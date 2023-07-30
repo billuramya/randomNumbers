@@ -1,32 +1,40 @@
 import {Component} from 'react'
 
 import './index.css'
-import math 
 
 class RandomNumberGenerator extends Component {
   state = {
-    count: 0,
+    randomNumber: 0,
   }
-  changeRandomNumber = () => {
-    this.setState((prevState=>
-        count: prevState.Math.random(1, 100))
+
+  onGenerateRandomNumber = () => {
+    const newRandomNumber = Math.ceil(Math.random() * 100)
+
+    this.setState({randomNumber: newRandomNumber})
   }
 
   render() {
-    const {count} = this.state
+    const {randomNumber} = this.state
 
     return (
-      <div className="container">
-        <h1 className="heading">Random Number</h1>
-        <p className="description">
-          Generate a random number in the range of 0 to 100
-        </p>
-        <button className="button" onClick={this.changeRandomNumber}>
-          Generate
-        </button>
-        <p className="number">{count}</p>
+      <div className="app-container">
+        <div className="random-number-generator-container">
+          <h1 className="heading">Random Number</h1>
+          <p className="description">
+            Generate a random number in the range of 0 to 100
+          </p>
+          <button
+            type="button"
+            className="generate-button"
+            onClick={this.onGenerateRandomNumber}
+          >
+            Generate
+          </button>
+          <p className="random-number">{randomNumber}</p>
+        </div>
       </div>
     )
   }
 }
+
 export default RandomNumberGenerator
